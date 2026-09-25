@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>日程のご案内</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #F2F4F8; }
+  iframe { display: block; border: 0; width: 100%; height: 100%; }
+  p { font-family: sans-serif; text-align: center; padding: 24px; }
+</style>
+</head>
+<body>
+<iframe id="app" title="日程のご案内" allow="clipboard-write"></iframe>
+<noscript><p>このページを表示するには JavaScript を有効にしてください。</p></noscript>
+<script>
+  
+  var APP = 'https://script.google.com/macros/s/AKfycbxr_tLQpptnsMbGnlJcxMB9KBPHa3Lb-PvkCatagBk3lg6AiYS_IYfiGDtOS2C7XF8I/exec';
+  var token = location.search.slice(1).replace(/[^A-Za-z0-9]/g, '').slice(0, 64);
+  if (token) document.getElementById('app').src = APP + '?t=' + token;
+  else document.body.innerHTML = '<p>URLをご確認ください。</p>';
+</script>
+</body>
+</html>
