@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
 <title>日程のご案内</title>
 <style>
   html, body { margin: 0; height: 100%; background: #F2F4F8; }
@@ -12,14 +13,18 @@
 </style>
 </head>
 <body>
-<iframe id="app" title="日程のご案内" allow="clipboard-write"></iframe>
+<iframe id="app" title="日程のご案内" allow="clipboard-write" referrerpolicy="no-referrer"></iframe>
 <noscript><p>このページを表示するには JavaScript を有効にしてください。</p></noscript>
 <script>
   
   var APP = 'https://script.google.com/macros/s/AKfycbxr_tLQpptnsMbGnlJcxMB9KBPHa3Lb-PvkCatagBk3lg6AiYS_IYfiGDtOS2C7XF8I/exec';
-  var token = location.search.slice(1).replace(/[^A-Za-z0-9]/g, '').slice(0, 64);
-  if (token) document.getElementById('app').src = APP + '?t=' + token;
-  else document.body.innerHTML = '<p>URLをご確認ください。</p>';
+  var q = location.search.slice(1);
+  var key = (new URLSearchParams(q).get('k') || '').replace(/[^a-f0-9]/g, '');
+  var token = q.replace(/[^A-Za-z0-9]/g, '').slice(0, 64);
+  var frame = document.getElementById('app');
+  if (key) { frame.src = APP + '?k=' + key; document.title = '空き時間'; }
+  else if (token) { frame.src = APP + '?t=' + token; }
+  else { document.body.innerHTML = '<p>URLをご確認ください。</p>'; }
 </script>
 </body>
 </html>
